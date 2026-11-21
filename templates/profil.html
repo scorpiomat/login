@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Profil - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card">
+    <h1>Profil Saya</h1>
+    <p class="muted">Informasi akun Scorpio kamu.</p>
+
+    <div class="profile-row">
+        <span>Username</span>
+        <strong>{{ user["username"] }}</strong>
+    </div>
+
+    <div class="profile-row">
+        <span>Email</span>
+        <strong>{{ user["email"] or "Belum ditambahkan" }}</strong>
+    </div>
+
+    <div class="profile-row">
+        <span>Status Email</span>
+
+        {% if user["email_verified"] %}
+            <strong class="verified">Terverifikasi</strong>
+        {% else %}
+            <strong class="unverified">Belum terverifikasi</strong>
+        {% endif %}
+    </div>
+
+    <div class="profile-row">
+        <span>Tanggal Pembuatan Akun</span>
+        <strong>{{ user["created_at"] }}</strong>
+    </div>
+
+    <a class="button-link" href="{{ url_for('pengaturan') }}">
+        Buka Pengaturan
+    </a>
+</section>
+{% endblock %}

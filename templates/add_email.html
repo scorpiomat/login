@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Tambahkan Email - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card auth-card">
+    <h1>Amankan Akun</h1>
+    <p class="muted">
+        Tambahkan alamat email untuk verifikasi dan pemulihan password.
+    </p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Alamat Email</label>
+        <input type="email" name="email" required
+               autocomplete="email"
+               placeholder="nama@gmail.com">
+
+        <button type="submit">Kirim Kode Verifikasi</button>
+    </form>
+</section>
+{% endblock %}

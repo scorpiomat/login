@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Pengaturan - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card auth-card">
+    <h1>Pengaturan Akun</h1>
+    <p class="muted">Ganti password akun Scorpio kamu.</p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Password Lama</label>
+        <input type="password" name="password_lama"
+               required autocomplete="current-password">
+
+        <label>Password Baru</label>
+        <input type="password" name="password_baru"
+               minlength="8" required autocomplete="new-password">
+
+        <label>Konfirmasi Password Baru</label>
+        <input type="password" name="konfirmasi"
+               minlength="8" required autocomplete="new-password">
+
+        <button type="submit">Simpan Perubahan</button>
+    </form>
+
+    <p class="center">
+        <a href="{{ url_for('profil') }}">Kembali ke Profil</a>
+    </p>
+</section>
+{% endblock %}  

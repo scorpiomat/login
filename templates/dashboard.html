@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Beranda - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card dashboard-card">
+    <p class="eyebrow">SCORPIO DASHBOARD</p>
+
+    <h1>Selamat Datang, {{ session.get('username', 'Pengguna') }}!</h1>
+    <p class="muted">Kamu berhasil masuk ke website Scorpio.</p>
+
+    <div class="menu-grid">
+        <a class="menu-item" href="{{ url_for('profil') }}">
+            <span class="menu-icon">👤</span>
+            <strong>Profil</strong>
+            <span class="muted">Lihat informasi akun</span>
+        </a>
+
+        <a class="menu-item" href="{{ url_for('pengaturan') }}">
+            <span class="menu-icon">⚙️</span>
+            <strong>Pengaturan</strong>
+            <span class="muted">Atur keamanan akun</span>
+        </a>
+    </div>
+</section>
+{% endblock %}

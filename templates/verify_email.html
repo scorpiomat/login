@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Verifikasi Email - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card auth-card">
+    <h1>Verifikasi Email</h1>
+    <p class="muted">
+        Masukkan kode 6 digit yang dikirim ke email kamu.
+        Kode berlaku 10 menit.
+    </p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Kode OTP</label>
+        <input type="text" name="code"
+               inputmode="numeric"
+               pattern="[0-9]{6}"
+               maxlength="6"
+               minlength="6"
+               autocomplete="one-time-code"
+               required
+               placeholder="000000">
+
+        <button type="submit">Verifikasi Email</button>
+    </form>
+
+    <form method="POST" action="{{ url_for('resend_email_code') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="secondary" type="submit">Kirim Ulang Kode</button>
+    </form>
+</section>
+{% endblock %}

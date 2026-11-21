@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Daftar - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card auth-card">
+    <h1>Buat Akun</h1>
+    <p class="muted">Daftar dan verifikasi email kamu.</p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Username</label>
+        <input type="text" name="username" minlength="3" required
+               autocomplete="username"
+               placeholder="Minimal 3 karakter">
+
+        <label>Email</label>
+        <input type="email" name="email" required
+               autocomplete="email"
+               placeholder="nama@gmail.com">
+
+        <label>Password</label>
+        <input type="password" name="password" minlength="8" required
+               autocomplete="new-password"
+               placeholder="Minimal 8 karakter">
+
+        <label>Konfirmasi Password</label>
+        <input type="password" name="confirm_password" minlength="8" required
+               autocomplete="new-password"
+               placeholder="Ulangi password">
+
+        <button type="submit">Daftar</button>
+    </form>
+
+    <p class="center">
+        Sudah punya akun?
+        <a href="{{ url_for('login') }}">Login</a>
+    </p>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Verifikasi Reset - Scorpio{% endblock %}
+
+{% block content %}
+<section class="card auth-card">
+    <h1>Masukkan Kode OTP</h1>
+    <p class="muted">
+        Periksa email dan folder spam. Kode berlaku 10 menit.
+    </p>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Kode OTP</label>
+        <input type="text" name="code"
+               inputmode="numeric"
+               pattern="[0-9]{6}"
+               minlength="6"
+               maxlength="6"
+               autocomplete="one-time-code"
+               required
+               placeholder="000000">
+
+        <button type="submit">Verifikasi Kode</button>
+    </form>
+
+    <form method="POST" action="{{ url_for('resend_reset_code') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="secondary">Kirim Ulang Kode</button>
+    </form>
+</section>
+{% endblock %}

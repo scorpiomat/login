@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Scorpio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="{{ url_for('beranda') if session.get('user_id') else url_for('login') }}">SCORPIO</a>
+
+        {% if session.get('user_id') %}
+        <nav>
+            <a href="{{ url_for('beranda') }}">Beranda</a>
+            <a href="{{ url_for('profil') }}">Profil</a>
+            <a href="{{ url_for('pengaturan') }}">Pengaturan</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        {% endif %}
+    </header>
+
+    <main class="page">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="notice {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">Scorpio &copy; 2026</footer>
+</body>
+</html>
